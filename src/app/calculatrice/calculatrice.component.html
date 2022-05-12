@@ -1,0 +1,31 @@
+<span class="container">
+  <div class="calculator">
+    <span class="result-container">
+      <p class="input">{{ input }}</p>
+    </span>
+    <span class="digit-container">
+      <button
+        mat-raised-button
+        *ngFor="let number of numbers"
+        (click)="add(number)"
+        color="primary"
+      >
+        {{ number }}
+      </button>
+      <button mat-raised-button (click)="clear()" color="warn">C</button>
+    </span>
+    <span class="digit-container">
+      <button
+        mat-raised-button
+        *ngFor="let operator of operators"
+        (click)="add(operator)"
+        color="accent"
+      >
+        {{ operator }}
+      </button>
+      <button mat-raised-button (click)="calculate(input)" color="warn">
+        =
+      </button>
+    </span>
+  </div>
+</span>
