@@ -1,43 +1,49 @@
+import { CalculatriceService } from './../services/calculatrice.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-calculatrice',
   templateUrl: './calculatrice.component.html',
-  styleUrls: ['./calculatrice.component.scss']
+  styleUrls: ['./calculatrice.component.scss'],
 })
-export class CalculatriceComponent implements OnInit {
-
-  constructor() { }
+export class CalculatriceComponent implements OnInit{
+  constructor(private calculatriceService: CalculatriceService) {}
 
   ngOnInit(): void {
+    this.getInput();
+    this.getNumbers();
+    this.getOperators();
   }
 
-  input: string = ''
 
-  numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
-  operators: string[] = ['+', '-', '*', '/'];
+  input: string = '';
+  numbers: string[] = []
+  operators: string[] = []
 
-  /**
-   * Permet de calculer le résultat
-   * @param input Chaine de caractère à calculer
-   * @returns résultat du calcul
-   */
-  public calculate(input: string): number {
-    return this.input = eval(input)
+  private getInput(): void {
+    this.input = this.calculatriceService.input;
   }
 
-  /**
-   * Efface la chaine de caractère
-   */
+  private getNumbers(): void {
+    this.numbers = this.calculatriceService.numbers;
+  }
+
+  private getOperators(): void {
+    this.operators = this.calculatriceService.operators;
+  }
+
+  public calculate(): void {
+    this.calculatriceService.calculate();
+    this.getInput();
+  }
+
   public clear(): void {
-    this.input = ''
+    this.calculatriceService.clear();
+    this.getInput();
   }
 
-  /**
-   * Permet d'ajouter un caractère à l'input
-   * @param input Chaine de caractère à ajouter
-   */
   public add(input: string): void {
-    this.input += input
+    this.calculatriceService.add(input);
+    this.getInput();
   }
 }
