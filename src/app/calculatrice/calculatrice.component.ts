@@ -6,44 +6,25 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './calculatrice.component.html',
   styleUrls: ['./calculatrice.component.scss'],
 })
-export class CalculatriceComponent implements OnInit{
+export class CalculatriceComponent implements OnInit {
+  input: string  = '';
+  numbers: string[] = this.calculatriceService.numbers;
+  operators: string[] = this.calculatriceService.operators;
+
   constructor(private calculatriceService: CalculatriceService) {}
 
   ngOnInit(): void {
-    this.getInput();
-    this.getNumbers();
-    this.getOperators();
-  }
-
-
-  input: string = '';
-  numbers: string[] = []
-  operators: string[] = []
-
-  private getInput(): void {
-    this.input = this.calculatriceService.input;
-  }
-
-  private getNumbers(): void {
-    this.numbers = this.calculatriceService.numbers;
-  }
-
-  private getOperators(): void {
-    this.operators = this.calculatriceService.operators;
   }
 
   public calculate(): void {
-    this.calculatriceService.calculate();
-    this.getInput();
+    this.input = this.calculatriceService.calculate(this.input);
   }
 
   public clear(): void {
-    this.calculatriceService.clear();
-    this.getInput();
+    this.input = this.calculatriceService.clear();
   }
 
   public add(input: string): void {
-    this.calculatriceService.add(input);
-    this.getInput();
+    this.input = this.calculatriceService.add(this.input, input);
   }
 }

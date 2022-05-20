@@ -8,7 +8,6 @@ export class CalculatriceService {
 
   numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.'];
   operators: string[] = ['+', '-', '*', '/'];
-  input: string = '';
 
   constructor() { }
 
@@ -16,26 +15,26 @@ export class CalculatriceService {
    * Permet de calculer le résultat
    * @returns résultat du calcul
    */
-     public calculate(): void {
-      this.checkIntegrity(this.input);
-      this.input = eval(this.input);
-      console.log(this.input);
+     public calculate(input: string): string {
+      this.checkIntegrity(input);
+      const result = eval(input);
+      return result;
     }
 
     /**
      * Efface la chaine de caractère
      */
-    public clear(): void {
-      this.input = '';
+    public clear(): string {
+      return '';
     }
 
     /**
      * Permet d'ajouter un caractère à l'input
      * @param input Chaine de caractère à ajouter
      */
-    public add(input: string): void {
-      this.input += input;
-      console.log(this.input);
+    public add(input: string, add: string): string {
+      input += add;
+      return input;
     }
 
     private checkIntegrity(input: string): void {
@@ -46,7 +45,7 @@ export class CalculatriceService {
       if (input.includes('..')) {
         throw new Error('Nombre invalide');
       } else {
-        this.input = this.input;
+        return;
       }
     }
 }
