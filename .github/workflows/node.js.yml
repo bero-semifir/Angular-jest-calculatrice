@@ -1,33 +1,43 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
+# le nom du workflow
 name: Node.js CI
 
+# les régles pour déclencher le workflow
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
+# liste des actions (jobs) a effectuer
 jobs:
   build:
-
+    # l'OS sur lequel fonctionner
     runs-on: ubuntu-latest
-
+    # optionnel: permet de build sur plusieur versions (une boucle for)
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
+  # les étapes du job
     steps:
+    # git pull
     - uses: actions/checkout@v3
+    # setup de NodeJS
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    # installation des dépendances en mode CI (plus rapide qu'un npm i)
     - run: npm ci
+    # build de l'app
     - run: npm run build --if-present
+
+  
   test:
     needs: [build]
     runs-on: ubuntu-latest
