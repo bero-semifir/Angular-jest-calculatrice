@@ -34,3 +34,15 @@ jobs:
     steps:
       - run: npm ci
       - run: npm test
+
+  docker-delivery:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Livraison sur Docker Hub'
+
+  azure-deployment:
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Déploiement sur Azure'
