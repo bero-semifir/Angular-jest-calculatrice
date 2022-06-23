@@ -1,6 +1,6 @@
 # DemoTestsAngular
 
-[![Node.js CI](https://github.com/bero-semifir/Angular-jest-calculatrice/actions/workflows/node.js.yml/badge.svg)](https://github.com/bero-semifir/Angular-jest-calculatrice/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/bero-semifir/Angular-jest-calculatrice/actions/workflows/node.js.yml/badge.svg)](https://github.com/bero-semifir/Angular-jest-calculatrice/actions/workflows/node.js.yml)[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=bero-semifir_Angular-jest-calculatrice&metric=coverage)](https://sonarcloud.io/summary/new_code?id=bero-semifir_Angular-jest-calculatrice)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
 
