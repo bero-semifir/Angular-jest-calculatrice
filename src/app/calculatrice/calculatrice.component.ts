@@ -27,4 +27,8 @@ export class CalculatriceComponent implements OnInit {
   public add(input: string): void {
     this.input = this.calculatriceService.add(this.input, input);
   }
+
+  public truc(params:any) {
+    console.log("poulet");
+  }
 }
